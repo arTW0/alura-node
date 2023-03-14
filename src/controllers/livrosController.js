@@ -65,7 +65,7 @@ class LivroController {
       })
   }
 
-  static listarLivros = (req, res) => {
+  static listarLivrosPorId = (req, res) => {
     const id = req.params.id
 
     livros.findById(id)
