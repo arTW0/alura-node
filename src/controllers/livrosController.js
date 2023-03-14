@@ -46,6 +46,40 @@ class LivroController {
         })
       })
   }
+
+  static atualizarLivro = (req, res) => {
+    const id = req.params.id
+
+    livros.findByIdAndUpdate(id, { $set: req.body })
+      .then((result) => {
+        res.status(201).json({
+          message: "Livro atualizado com sucesso",
+          // data: result,
+        })
+      })
+      .catch((err) => {
+        res.status(500).json({
+          message: "Não foi possível atualizar o livro",
+        })
+        return
+      })
+  }
+
+  static listarLivros = (req, res) => {
+    const id = req.params.id
+
+    livros.findById(id)
+      .then((result) => {
+        res.status(201).json({
+          data: result,
+        })
+      }).catch((err) => {
+        res.status(400).json({
+          message: "Não foi possível obter o livro",
+        })
+        return
+      })
+  }
 }
 
 export default LivroController
