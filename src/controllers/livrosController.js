@@ -80,6 +80,22 @@ class LivroController {
         return
       })
   }
+
+  static deletarLivro = (req, res) => {
+    const id = req.params.id
+
+    livros.findByIdAndDelete(id)
+      .then((result) => {
+        res.status(201).json({
+          message: "Livro deletado com sucesso",
+        })
+      }).catch((err) => {
+        res.status(400).json({
+          message: "Não foi possível deletar o livro",
+        })
+        return
+      })
+  }
 }
 
 export default LivroController
